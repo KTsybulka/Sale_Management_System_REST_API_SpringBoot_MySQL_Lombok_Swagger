@@ -1,10 +1,8 @@
 package com.example.n01561393_Assignment05_.Sale_management_System.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,4 +20,10 @@ public class Store {
     private String city;
     private String province;
     private String country;
+
+    @OneToOne(mappedBy = "store") //name of Store object in Sale class
+//   Stop endless back-and-forth references when converting objects to JSON
+    @JsonBackReference
+    private Sale sale;
+
 }

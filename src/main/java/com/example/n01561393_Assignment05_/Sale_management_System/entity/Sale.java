@@ -2,10 +2,7 @@ package com.example.n01561393_Assignment05_.Sale_management_System.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +15,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//this annotation helps you show only the data you care about and hides technical details that aren't useful.
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Sale {
 
     @Id
@@ -30,5 +28,11 @@ public class Sale {
     private LocalDateTime transactionDate;
 
     private String associateName;
+
+//  Automatically apply all actions (like saving, updating, and deleting) to the related entity as well
+    @OneToOne(cascade = CascadeType.ALL)
+//    creates a foreign key column named storeId in the Sale table
+    @JoinColumn(name = "storeId")
+    private Store store;
 
 }
