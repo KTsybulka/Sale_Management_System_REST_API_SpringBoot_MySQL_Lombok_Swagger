@@ -22,8 +22,8 @@ public class Store {
     private String country;
 
     @OneToOne(mappedBy = "store") //name of Store object in Sale class
-//   Stop endless back-and-forth references when converting objects to JSON
-    @JsonBackReference
+
+    @JsonBackReference//   Stop endless back-and-forth references when converting objects to JSON
     private Sale sale;
 
 }
